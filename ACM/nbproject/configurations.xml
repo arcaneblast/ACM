@@ -14,12 +14,17 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>00100uva.cpp</itemPath>
       <itemPath>10281uva.cpp</itemPath>
       <itemPath>10773uva.cpp</itemPath>
       <itemPath>11614uva.cpp</itemPath>
       <itemPath>11805uva.cpp</itemPath>
       <itemPath>11875uva.cpp</itemPath>
-      <itemPath>uva11723.cpp</itemPath>
+      <itemPath>12149uva.cpp</itemPath>
+      <itemPath>12502uva.cpp</itemPath>
+      <itemPath>157ahmadaly.cpp</itemPath>
+      <itemPath>158ahmadaly.cpp</itemPath>
+      <itemPath>179ahmadaly.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -43,6 +48,8 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="00100uva.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="10281uva.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="10773uva.cpp" ex="false" tool="1" flavor2="0">
@@ -53,11 +60,19 @@
       </item>
       <item path="11875uva.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="12149uva.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="12502uva.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="157ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="158ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="179ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="in.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="out.txt" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="uva11723.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -80,6 +95,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="00100uva.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="10281uva.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="10773uva.cpp" ex="false" tool="1" flavor2="0">
@@ -90,11 +107,19 @@
       </item>
       <item path="11875uva.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="12149uva.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="12502uva.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="157ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="158ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="179ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="in.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="out.txt" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="uva11723.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

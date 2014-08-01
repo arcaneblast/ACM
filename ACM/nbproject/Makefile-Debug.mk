@@ -35,12 +35,17 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/00100uva.o \
 	${OBJECTDIR}/10281uva.o \
 	${OBJECTDIR}/10773uva.o \
 	${OBJECTDIR}/11614uva.o \
 	${OBJECTDIR}/11805uva.o \
 	${OBJECTDIR}/11875uva.o \
-	${OBJECTDIR}/uva11723.o
+	${OBJECTDIR}/12149uva.o \
+	${OBJECTDIR}/12502uva.o \
+	${OBJECTDIR}/157ahmadaly.o \
+	${OBJECTDIR}/158ahmadaly.o \
+	${OBJECTDIR}/179ahmadaly.o
 
 
 # C Compiler Flags
@@ -67,6 +72,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/acm: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/acm ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/00100uva.o: 00100uva.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/00100uva.o 00100uva.cpp
+
 ${OBJECTDIR}/10281uva.o: 10281uva.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -92,10 +102,30 @@ ${OBJECTDIR}/11875uva.o: 11875uva.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/11875uva.o 11875uva.cpp
 
-${OBJECTDIR}/uva11723.o: uva11723.cpp 
+${OBJECTDIR}/12149uva.o: 12149uva.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/uva11723.o uva11723.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/12149uva.o 12149uva.cpp
+
+${OBJECTDIR}/12502uva.o: 12502uva.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/12502uva.o 12502uva.cpp
+
+${OBJECTDIR}/157ahmadaly.o: 157ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/157ahmadaly.o 157ahmadaly.cpp
+
+${OBJECTDIR}/158ahmadaly.o: 158ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/158ahmadaly.o 158ahmadaly.cpp
+
+${OBJECTDIR}/179ahmadaly.o: 179ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/179ahmadaly.o 179ahmadaly.cpp
 
 # Subprojects
 .build-subprojects:
