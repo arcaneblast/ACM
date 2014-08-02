@@ -23,8 +23,11 @@
 //    while (t--)
 //    {
 //        cin>>x>>y>>z;
-//        int chare = (x+y)/3;        
-//        cout<<((x-chare)*z)/chare<<endl;
+//        int  chare = z*(x+(x-y))/(x+y);        
+//        if(chare<=0)
+//            cout<<"0"<<endl;
+//        else
+//            cout<<chare<<endl;     
 //    }
 //    return 0;
 //}

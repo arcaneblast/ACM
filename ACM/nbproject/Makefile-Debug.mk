@@ -45,7 +45,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/12502uva.o \
 	${OBJECTDIR}/157ahmadaly.o \
 	${OBJECTDIR}/158ahmadaly.o \
-	${OBJECTDIR}/179ahmadaly.o
+	${OBJECTDIR}/165ahmadaly.o \
+	${OBJECTDIR}/179ahmadaly.o \
+	${OBJECTDIR}/24ahmadaly.o
 
 
 # C Compiler Flags
@@ -122,10 +124,20 @@ ${OBJECTDIR}/158ahmadaly.o: 158ahmadaly.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/158ahmadaly.o 158ahmadaly.cpp
 
+${OBJECTDIR}/165ahmadaly.o: 165ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/165ahmadaly.o 165ahmadaly.cpp
+
 ${OBJECTDIR}/179ahmadaly.o: 179ahmadaly.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/179ahmadaly.o 179ahmadaly.cpp
+
+${OBJECTDIR}/24ahmadaly.o: 24ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/24ahmadaly.o 24ahmadaly.cpp
 
 # Subprojects
 .build-subprojects:
