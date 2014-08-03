@@ -8,7 +8,7 @@
 #include <vector>
 
 using namespace std;
-typedef  unsigned long long ull;
+typedef long long ull;
 
 ull moder =33554431;
 
