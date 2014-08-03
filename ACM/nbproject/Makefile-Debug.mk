@@ -36,9 +36,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/00100uva.o \
+	${OBJECTDIR}/00382uva.o \
+	${OBJECTDIR}/00843uva.o \
 	${OBJECTDIR}/10281uva.o \
 	${OBJECTDIR}/10773uva.o \
 	${OBJECTDIR}/11614uva.o \
+	${OBJECTDIR}/11661uva.o \
 	${OBJECTDIR}/11805uva.o \
 	${OBJECTDIR}/11875uva.o \
 	${OBJECTDIR}/12149uva.o \
@@ -46,6 +49,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/157ahmadaly.o \
 	${OBJECTDIR}/158ahmadaly.o \
 	${OBJECTDIR}/165ahmadaly.o \
+	${OBJECTDIR}/167ahmadaly.o \
+	${OBJECTDIR}/173ahmadaly.o \
 	${OBJECTDIR}/179ahmadaly.o \
 	${OBJECTDIR}/24ahmadaly.o
 
@@ -79,6 +84,16 @@ ${OBJECTDIR}/00100uva.o: 00100uva.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/00100uva.o 00100uva.cpp
 
+${OBJECTDIR}/00382uva.o: 00382uva.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/00382uva.o 00382uva.cpp
+
+${OBJECTDIR}/00843uva.o: 00843uva.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/00843uva.o 00843uva.cpp
+
 ${OBJECTDIR}/10281uva.o: 10281uva.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -93,6 +108,11 @@ ${OBJECTDIR}/11614uva.o: 11614uva.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/11614uva.o 11614uva.cpp
+
+${OBJECTDIR}/11661uva.o: 11661uva.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/11661uva.o 11661uva.cpp
 
 ${OBJECTDIR}/11805uva.o: 11805uva.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -128,6 +148,16 @@ ${OBJECTDIR}/165ahmadaly.o: 165ahmadaly.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/165ahmadaly.o 165ahmadaly.cpp
+
+${OBJECTDIR}/167ahmadaly.o: 167ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/167ahmadaly.o 167ahmadaly.cpp
+
+${OBJECTDIR}/173ahmadaly.o: 173ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/173ahmadaly.o 173ahmadaly.cpp
 
 ${OBJECTDIR}/179ahmadaly.o: 179ahmadaly.cpp 
 	${MKDIR} -p ${OBJECTDIR}
