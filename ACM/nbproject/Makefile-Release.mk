@@ -52,11 +52,13 @@ OBJECTFILES= \
 	${OBJECTDIR}/155ahmadaly.o \
 	${OBJECTDIR}/157ahmadaly.o \
 	${OBJECTDIR}/158ahmadaly.o \
+	${OBJECTDIR}/162ahmadaly.o \
 	${OBJECTDIR}/165ahmadaly.o \
 	${OBJECTDIR}/167ahmadaly.o \
 	${OBJECTDIR}/173ahmadaly.o \
 	${OBJECTDIR}/179ahmadaly.o \
-	${OBJECTDIR}/24ahmadaly.o
+	${OBJECTDIR}/24ahmadaly.o \
+	${OBJECTDIR}/9ahmadaly.o
 
 
 # C Compiler Flags
@@ -168,6 +170,11 @@ ${OBJECTDIR}/158ahmadaly.o: 158ahmadaly.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/158ahmadaly.o 158ahmadaly.cpp
 
+${OBJECTDIR}/162ahmadaly.o: 162ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/162ahmadaly.o 162ahmadaly.cpp
+
 ${OBJECTDIR}/165ahmadaly.o: 165ahmadaly.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -192,6 +199,11 @@ ${OBJECTDIR}/24ahmadaly.o: 24ahmadaly.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/24ahmadaly.o 24ahmadaly.cpp
+
+${OBJECTDIR}/9ahmadaly.o: 9ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/9ahmadaly.o 9ahmadaly.cpp
 
 # Subprojects
 .build-subprojects:

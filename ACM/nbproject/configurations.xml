@@ -31,11 +31,13 @@
       <itemPath>155ahmadaly.cpp</itemPath>
       <itemPath>157ahmadaly.cpp</itemPath>
       <itemPath>158ahmadaly.cpp</itemPath>
+      <itemPath>162ahmadaly.cpp</itemPath>
       <itemPath>165ahmadaly.cpp</itemPath>
       <itemPath>167ahmadaly.cpp</itemPath>
       <itemPath>173ahmadaly.cpp</itemPath>
       <itemPath>179ahmadaly.cpp</itemPath>
       <itemPath>24ahmadaly.cpp</itemPath>
+      <itemPath>9ahmadaly.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -93,6 +95,8 @@
       </item>
       <item path="158ahmadaly.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="162ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="165ahmadaly.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="167ahmadaly.cpp" ex="false" tool="1" flavor2="0">
@@ -102,6 +106,8 @@
       <item path="179ahmadaly.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="24ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="9ahmadaly.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="in.txt" ex="false" tool="3" flavor2="0">
       </item>
@@ -162,6 +168,8 @@
       </item>
       <item path="158ahmadaly.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="162ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="165ahmadaly.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="167ahmadaly.cpp" ex="false" tool="1" flavor2="0">
@@ -171,6 +179,8 @@
       <item path="179ahmadaly.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="24ahmadaly.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="9ahmadaly.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="in.txt" ex="false" tool="3" flavor2="0">
       </item>
