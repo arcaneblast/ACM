@@ -39,7 +39,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/00382uva.o \
 	${OBJECTDIR}/00843uva.o \
 	${OBJECTDIR}/01225uva.o \
+	${OBJECTDIR}/10009uva.o \
 	${OBJECTDIR}/10035uva.o \
+	${OBJECTDIR}/10161uva.o \
 	${OBJECTDIR}/10281uva.o \
 	${OBJECTDIR}/10346uva.o \
 	${OBJECTDIR}/10773uva.o \
@@ -49,15 +51,19 @@ OBJECTFILES= \
 	${OBJECTDIR}/11875uva.o \
 	${OBJECTDIR}/12149uva.o \
 	${OBJECTDIR}/12502uva.o \
+	${OBJECTDIR}/146Acodeforces.o \
 	${OBJECTDIR}/155ahmadaly.o \
 	${OBJECTDIR}/157ahmadaly.o \
 	${OBJECTDIR}/158ahmadaly.o \
+	${OBJECTDIR}/159ahmadaly.o \
 	${OBJECTDIR}/162ahmadaly.o \
 	${OBJECTDIR}/165ahmadaly.o \
 	${OBJECTDIR}/167ahmadaly.o \
 	${OBJECTDIR}/173ahmadaly.o \
 	${OBJECTDIR}/179ahmadaly.o \
+	${OBJECTDIR}/190ahmadaly.o \
 	${OBJECTDIR}/24ahmadaly.o \
+	${OBJECTDIR}/572uva.o \
 	${OBJECTDIR}/9ahmadaly.o
 
 
@@ -105,10 +111,20 @@ ${OBJECTDIR}/01225uva.o: 01225uva.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/01225uva.o 01225uva.cpp
 
+${OBJECTDIR}/10009uva.o: 10009uva.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/10009uva.o 10009uva.cpp
+
 ${OBJECTDIR}/10035uva.o: 10035uva.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/10035uva.o 10035uva.cpp
+
+${OBJECTDIR}/10161uva.o: 10161uva.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/10161uva.o 10161uva.cpp
 
 ${OBJECTDIR}/10281uva.o: 10281uva.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -155,6 +171,11 @@ ${OBJECTDIR}/12502uva.o: 12502uva.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/12502uva.o 12502uva.cpp
 
+${OBJECTDIR}/146Acodeforces.o: 146Acodeforces.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/146Acodeforces.o 146Acodeforces.cpp
+
 ${OBJECTDIR}/155ahmadaly.o: 155ahmadaly.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -169,6 +190,11 @@ ${OBJECTDIR}/158ahmadaly.o: 158ahmadaly.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/158ahmadaly.o 158ahmadaly.cpp
+
+${OBJECTDIR}/159ahmadaly.o: 159ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/159ahmadaly.o 159ahmadaly.cpp
 
 ${OBJECTDIR}/162ahmadaly.o: 162ahmadaly.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -195,10 +221,20 @@ ${OBJECTDIR}/179ahmadaly.o: 179ahmadaly.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/179ahmadaly.o 179ahmadaly.cpp
 
+${OBJECTDIR}/190ahmadaly.o: 190ahmadaly.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/190ahmadaly.o 190ahmadaly.cpp
+
 ${OBJECTDIR}/24ahmadaly.o: 24ahmadaly.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/24ahmadaly.o 24ahmadaly.cpp
+
+${OBJECTDIR}/572uva.o: 572uva.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/572uva.o 572uva.cpp
 
 ${OBJECTDIR}/9ahmadaly.o: 9ahmadaly.cpp 
 	${MKDIR} -p ${OBJECTDIR}
