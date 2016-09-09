@@ -1,0 +1,160 @@
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <string.h>
+#include <string>
+#include <map>
+#include <math.h>
+#include <sstream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <cmath>
+#include <algorithm>
+#include <list>
+#include <deque>
+#include <utility>
+#define mp  make_pair
+#define pb  push_back
+#define eps 1e-9
+#define iseq(a,b) (fabs(a-b)<eps)
+#define readfiles freopen("in.txt","r",stdin); freopen("out.txt","w",stdout)
+#define readfile freopen("in.txt","r",stdin)
+#define fastio ios::sync_with_stdio(false)
+#define oo 0x7fffffff
+#define forv(i,v) for(int i=0;i<v.size();i++)
+#define all(v) v.begin(),v.end()
+#define OO 0x7fffffffffffffff
+#define readcases int cases;cin>>cases;while(cases--)
+ 
+//vertix spliting 
+#define in_node(x) x
+#define out_node(x) x+n
+ 
+//graph coloring
+#define UNCOLORED -1
+#define BLACK 0
+#define WHITE 1 
+#define moder 1000000007
+ 
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+typedef pair<ll, pair<int, int> > edge;
+ 
+ull fixmod(ull a, ull m) {
+    ll ret = a % m;
+    if (ret < 0)
+        ret += m;
+    return ret;
+}
+ 
+struct matrix {
+public:
+    ull data[3][3];
+    int r, c;
+ 
+    matrix(int r, int c, ull d[3][3]) {
+        this->r = r;
+        this->c = c;
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                this->data[i][j] = d[i][j];
+            }
+        }
+    }
+ 
+    matrix(int r, int c) {
+        this->r = r;
+        this->c = c;
+        memset(data, 0, sizeof data);
+    }
+ 
+    matrix getIdentity() {
+        ull d[3][3] = {0};
+        for (int i = 0; i < r; i++)
+            d[i][i] = 1;
+        return matrix(this->r, this->c, d);
+    }
+ 
+    void print() {
+        for (int i = 0; i < r; i++) {
+            for (int j = 0; j < c; j++) {
+                cout << data[i][j] << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
+ 
+    matrix power(ull p) {
+        if (p == 0) {
+            return getIdentity();
+        }
+        if (p % 2 == 1)
+            return this->multi(power(p - 1));
+        return ((this->multi(*this)).power(p / 2));
+    }
+ 
+    matrix multi(matrix a) {
+        matrix ret(this->r, a.c);
+        if (this->c = a.r) {
+            for (int i = 0; i < r; i++) {
+                for (int j = 0; j < a.c; j++) {
+                    for (int k = 0; k < a.r; k++) {
+                        ret.data[i][j] = fixmod(ret.data[i][j] +
+                                fixmod(fixmod(this->data[i][k], moder) * fixmod(a.data[k][j], moder), moder), moder);
+                    }
+                }
+            }
+        }
+        //ret.print();
+        return ret;
+    }
+};
+ 
+ll func(ll n) {
+    if (n <= 0)
+        return 0;
+    else if (n == 1)
+        return 1;
+    else {
+        ull td[3][3] = {
+            {0, 1, 1},
+            {1, 1, 1},
+            {0, 0, 1}
+        };
+        ull initd[3][3] = {
+            {0, 1, 1},
+            {0, 0, 0},
+            {0, 0, 0}
+        };
+        matrix trans(3, 3, td);
+        matrix init(3, 3, initd);
+        trans = trans.power(n - 1);
+        matrix overall = init.multi(trans);
+        return overall.data[0][2] % moder;
+    }
+}
+ 
+int main() {
+#ifndef ONLINE_JUDGE 
+  //  readfiles;
+  //  double startTime = clock();
+#endif
+    int cases;
+    cin>>cases;
+    while (cases--) {
+        ll a, b;
+        cin >> a>>b;
+        ll res = (func(b) - func(a - 1)) % moder;
+        if (res < 0)
+            res += moder;
+        cout << res << endl;
+    }
+#ifndef ONLINE_JUDGE
+  //  cout << "Runtime is : " << (clock() - startTime) / CLOCKS_PER_SEC << endl;
+#endif
+} 

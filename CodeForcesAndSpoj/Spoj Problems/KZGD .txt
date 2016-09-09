@@ -1,0 +1,82 @@
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <string.h>
+#include <string>
+#include <map>
+#include <math.h>
+#include <sstream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <cmath>
+#include <algorithm>
+#include <list>
+#include <deque>
+#include <utility>
+#define mp  make_pair
+#define pb  push_back
+#define eps 1e-9
+#define iseq(a,b) (fabs(a-b)<eps)
+#define readfiles freopen("in.txt","r",stdin); freopen("out.txt","w",stdout)
+#define readfile freopen("in.txt","r",stdin)
+#define fastio ios::sync_with_stdio(false)
+#define oo 0x7fffffff
+#define forv(i,v) for(int i=0;i<v.size();i++)
+#define all(v) v.begin(),v.end()
+#define OO 0x7fffffffffffffff
+#define readcases int cases;cin>>cases;while(cases--)
+ 
+//vertix spliting 
+#define in_node(x) x
+#define out_node(x) x+n
+ 
+//graph coloring
+#define UNCOLORED -1
+#define BLACK 0
+#define WHITE 1 
+ 
+#define moder 1000000007
+ 
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+typedef pair<ll, pair<int, int> > edge;
+ 
+bool good(ll n) {
+    int cnt = 0;
+    while (n) {
+        cnt += (n & 1);
+        n =n>>1;
+    }
+    return (cnt % 2 == 1);
+}
+ 
+int main() {
+#ifndef ONLINE_JUDGE 
+    readfiles;
+    double startTime = clock();
+#endif
+    vector<ll> v;
+    ll num = 1;
+    while (v.size() <= 500) {
+        if (good(num))
+            v.pb(num);
+        num++;
+    }
+    int cases;
+    cin>>cases;
+    //for(int i=0;i<v.size();i++)
+    //    cout<<v[i]<<" ";
+    while (cases--) {
+        int n;
+        cin>>n;
+        n--;
+        cout << v[n] << endl;
+    }
+#ifndef ONLINE_JUDGE
+    cout << "Runtime is : " << (clock() - startTime) / CLOCKS_PER_SEC << endl;
+#endif
+} 

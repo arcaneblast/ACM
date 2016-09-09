@@ -1,0 +1,140 @@
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <string.h>
+#include <string>
+#include <map>
+#include <math.h>
+#include <sstream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <cmath>
+#include <algorithm>
+#include <list>
+#include <deque>
+#include <utility>
+#define mp  make_pair
+#define pb  push_back
+#define eps 1e-9
+#define sqr(x) ((x)*(x))
+#define iseq(a,b) (fabs(a-b)<eps)
+#define readfiles freopen("in.txt","r",stdin); freopen("out.txt","w",stdout)
+#define readfile freopen("in.txt","r",stdin)
+#define fastio ios::sync_with_stdio(false)
+#define oo 0x7fffffff
+#define forv(i,v) for(int i=0;i<v.size();i++)
+#define all(v) v.begin(),v.end()
+#define OO 0x7fffffffffffffff
+#define readcases int cases;cin>>cases;while(cases--)
+ 
+//vertex spliting 
+#define in_node(x) x
+#define out_node(x) x+n
+ 
+//graph coloring
+#define UNCOLORED -1
+#define BLACK 0
+#define WHITE 1 
+ 
+//biparite 
+#define Left_P(x) x
+#define Right_P(x) n+x
+#define moder 1000000007
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+typedef pair<ll, pair<int, int> > edge;
+ 
+vector< vector<int> > g;
+int n, m;
+char grid[55][55];
+int visited[2555];
+int match[2555];
+ 
+int hor[55][55];
+int ver[55][55];
+ 
+int aug(int l) {
+    if (visited[l])
+        return 0;
+    visited[l] = 1;
+    for (int i = 0; i < g[l].size(); i++) {
+        int r = g[l][i];
+        if (match[r] == -1 || aug(match[r])) {
+            match[r] = l;
+            return 1;
+        }
+    }
+    return 0;
+}
+ 
+int main() {
+#ifndef ONLINE_JUDGE 
+  //  readfiles;
+  //  double startTime = clock();
+#endif
+    int cases;
+    cin>>cases;
+    while (cases--) {
+        cin >> n>>m;
+        g.clear();
+        g.resize(n * m + 5);
+        memset(match, -1, sizeof match);
+        memset(ver, -1, sizeof ver);
+        memset(hor, -1, sizeof ver);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> grid[i][j];
+            }
+        }
+        //solve for hor
+        int counter1 = -1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == '*' && hor[i][j] == -1) {
+                    hor[i][j] = ++counter1;
+                    int jj = j + 1;
+                    while (jj < m && grid[i][jj] == '*') {
+                        hor[i][jj] = counter1;
+                        jj++;
+                    }
+                }
+            }
+        }
+        //solve for ver
+        int counter2 = -1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == '*' && ver[i][j] == -1) {
+                    ver[i][j] = ++counter2;
+                    int ii = i + 1;
+                    while (ii < n && grid[ii][j] == '*') {
+                        ver[ii][j] = counter2;
+                        ii++;
+                    }
+                }
+            }
+        }
+        // build graph
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (grid[i][j] == '*') {
+                    g[hor[i][j]].pb(ver[i][j]);
+                }
+            }
+        }
+        int MCBM = 0;
+        for (int i = 0; i <= counter1; i++) {
+            memset(visited, 0, sizeof visited);
+            MCBM += aug(i);
+        }
+        cout << MCBM << endl;
+    }
+ 
+#ifndef ONLINE_JUDGE
+   // cout << "Runtime is : " << (clock() - startTime) / CLOCKS_PER_SEC << endl;
+#endif
+}

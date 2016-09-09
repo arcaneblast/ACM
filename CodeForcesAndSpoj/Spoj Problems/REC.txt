@@ -1,0 +1,71 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+ 
+class Main
+{
+	static class matrix {
+ 
+        public BigInteger[][] data = new BigInteger[2][2];
+ 
+        public matrix(BigInteger a, BigInteger b, BigInteger c, BigInteger d) {
+            data[0][0] = a;
+            data[0][1] = b;
+            data[1][0] = c;
+            data[1][1] = d;
+ 
+        }
+ 
+        public matrix multi(matrix m, BigInteger moder) {
+            BigInteger a = data[0][0].mod(moder).multiply(m.data[0][0].mod(moder)).mod(moder).add(data[0][1].mod(moder).multiply(m.data[1][0].mod(moder))).mod(moder);
+            BigInteger b = data[0][0].mod(moder).multiply(m.data[0][1].mod(moder)).mod(moder).add(data[0][1].mod(moder).multiply(m.data[1][1].mod(moder))).mod(moder);
+            BigInteger c = data[1][0].mod(moder).multiply(m.data[0][0].mod(moder)).mod(moder).add(data[1][1].mod(moder).multiply(m.data[1][0].mod(moder))).mod(moder);
+            BigInteger d = data[1][0].mod(moder).multiply(m.data[0][1].mod(moder)).mod(moder).add(data[1][1].mod(moder).multiply(m.data[1][1].mod(moder))).mod(moder);
+            matrix temp = new matrix(a, b, c, d);
+            return temp;
+        }
+ 
+        public matrix pow(BigInteger p, BigInteger moder) {
+            if (p.compareTo(BigInteger.ZERO) == 0) {
+                matrix identity = new matrix(BigInteger.valueOf(1), BigInteger.valueOf(0), BigInteger.valueOf(0), BigInteger.valueOf(1));
+                return identity;
+            }
+            if (p.mod(BigInteger.valueOf(2)).compareTo(BigInteger.valueOf(1)) == 0) {
+                return this.multi(pow(p.subtract(BigInteger.valueOf(1)), moder), moder);
+            }
+            return this.multi(this, moder).pow(p.divide(BigInteger.valueOf(2)), moder);
+        }
+ 
+        public void print() {
+            System.out.println();
+            for (int i = 0; i < 2; i++) {
+                System.out.println();
+                for (int j = 0; j < 2; j++) {
+                    System.out.print(this.data[i][j] + " ");
+                }
+            }
+        }
+    }
+	public static void main (String[] args) throws java.lang.Exception
+	{
+		Scanner cin = new Scanner(System.in);
+        int cases;
+        cases = cin.nextInt();
+        while (cases != 0) {
+            cases--;
+            BigInteger a, b, n, m;
+            a = cin.nextBigInteger();
+            b = cin.nextBigInteger();
+            n = cin.nextBigInteger();
+            m = cin.nextBigInteger();
+            matrix init = new matrix(BigInteger.valueOf(1), BigInteger.valueOf(1), BigInteger.valueOf(0), BigInteger.valueOf(0));
+            //init.print();
+            matrix trans = new matrix(a, BigInteger.valueOf(0), b, BigInteger.valueOf(1));
+            //trans.print();
+            matrix trans_n = trans.pow(n, m);
+            //trans_n.print();
+            matrix overall = init.multi(trans_n, m);
+            //overall.print();
+            System.out.println(overall.data[0][0]);
+        }
+    }
+} 

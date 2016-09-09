@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string.h>
+#include <vector>
+#include <string>
+#include <cstdlib>
+#include <stdio.h>
+#include <functional>
+#include <algorithm>
+#include <sstream>
+using namespace std;
+vector<int> topo(bool g[105][105],int n,int tps[105])
+{
+    vector<int> v;
+    while(v.size()!=n)
+    {
+        for(int i=1;i<=n;i++)
+        {
+            if(tps[i]==0)
+            {
+                tps[i]=-1;
+                v.push_back(i);
+                for(int j=1;j<=n;j++)
+                {
+                    if(g[i][j]==true)
+                    {
+                        tps[j]--;
+                    }
+                }
+            }
+        }
+    }
+    return v;
+}
+int main()
+{
+    freopen("in.txt","r",stdin);
+    freopen("out.txt","w",stdout);
+    int n,m;
+    while(cin>>n>>m && (n!=0 && m!=0))
+    {
+        bool graph[105][105];
+        int tps[105];
+        memset(tps,0,sizeof(tps));
+        for(int i=0;i<m;i++)
+        {
+            int temp1,temp2;
+            cin>>temp1>>temp2;
+            graph[temp1][temp2]=true;
+            tps[temp2]++;
+        }
+        vector<int> res=topo(graph,n,tps);
+        //print result
+        for(int i=0;i<res.size()-1;i++)
+        {
+            cout<<res[i]<<" ";
+        }
+        cout<<res[res.size()-1]<<endl;
+    }
+}
+

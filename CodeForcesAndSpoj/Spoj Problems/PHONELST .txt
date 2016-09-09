@@ -1,0 +1,96 @@
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <string.h>
+#include <string>
+#include <map>
+#include <math.h>
+#include <sstream>
+#include <queue>
+#include <cmath>
+#include <algorithm>
+#include <deque>
+#define mp  make_pair
+#define pb  push_back
+#define eps 1e-9
+#define iseq(a,b) (fabs(a-b)<eps)
+#define readfiles freopen("in.txt","r",stdin); freopen("out.txt","w",stdout)
+#define readfile freopen("in.txt","r",stdin)
+#define fastio ios::sync_with_stdio(false)
+#define oo 0x7fffffff
+#define forv(i,v) for(int i=0;i<v.size();i++)
+#define all(v) v.begin(),v.end()
+#define OO 0x7fffffffffffffff
+#define readcases int cases;cin>>cases;while(cases--)
+#define MAX_N 105
+#define in_node(x) x
+#define out_node(x) x+n
+#define adjust(x) x+100
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+ 
+struct trie {
+    trie* ch[10];
+    bool word;
+ 
+    trie() {
+        memset(ch, 0, sizeof ch);
+        word = false;
+    }
+ 
+    bool insert(string s, int idx) {
+        if (idx == s.length()) {
+            word = true;
+            return false;
+        } else {
+            if (!ch[s[idx] - '0']){
+                ch[s[idx] - '0'] = new trie();
+            }
+            // if we insert a word over an ended word
+            else if(ch[s[idx] - '0']&&ch[s[idx] - '0']->word){
+                return true;
+            }
+            else if(idx == s.length() - 1&&ch[s[idx] - '0']){
+                return true;
+            } 
+            return (ch[s[idx] - '0']->insert(s, idx + 1));
+        }
+    }
+ 
+};
+ 
+int main() {
+#ifndef ONLINE_JUDGE 
+  //  readfiles;
+   // double startTime = clock();
+#endif
+    int cases;
+    cin>>cases;
+    while (cases--) {
+        int n;
+        cin>>n;
+        trie t;
+        bool valid=true;
+        vector<string> v;
+        string s;
+        for(int i=0;i<n;i++){
+            cin>>s;
+            v.push_back(s);
+        }
+        for(int i=0;i<n;i++){
+            if(t.insert(v[i],0)){
+                valid=false;
+                break;
+            }
+        }
+        if(valid)cout<<"YES"<<endl;
+        else cout<<"NO"<<endl;
+    }
+#ifndef ONLINE_JUDGE
+    //cout << "Runtime is : " << (clock() - startTime) / CLOCKS_PER_SEC << endl;
+#endif
+ 
+} 

@@ -1,0 +1,118 @@
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <string.h>
+#include <string>
+#include <map>
+#include <math.h>
+#include <sstream>
+#include <queue>
+#include <cmath>
+#include <algorithm>
+#include <deque>
+#define mp  make_pair
+#define pb  push_back
+#define eps 1e-9
+#define iseq(a,b) (fabs(a-b)<eps)
+#define readfiles freopen("in.txt","r",stdin); freopen("out.txt","w",stdout)
+#define readfile freopen("in.txt","r",stdin)
+#define fastio ios::sync_with_stdio(false)
+#define oo 0x7fffffff
+#define forv(i,v) for(int i=0;i<v.size();i++)
+#define all(v) v.begin(),v.end()
+#define OO 0x7fffffffffffffff
+#define readcases int cases;cin>>cases;while(cases--)
+#define MAX_N 105
+#define in_node(x) x
+#define out_node(x) x+n
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+ 
+class HopeCroft {
+    int n1, n2, edges, last[50005], p[150005], head[150005];
+    ll matching[50005], dist[50005], Q[50005];
+    bool used[50005], vis[50005];
+public:
+    void init(int _n1, int _n2) {
+        n1 = _n1;
+        n2 = _n2;
+        edges = 0;
+        fill(last, last + n1, -1);
+    }
+    void addEdge(int u, int v) {
+        head[edges] = v;
+        p[edges] = last[u];
+        last[u] = edges++;
+    }
+    void bfs() {
+        fill(dist, dist + n1, -1);
+        int sizeQ = 0;
+        for (int u = 0; u < n1; ++u) {
+            if (!used[u]) {
+                Q[sizeQ++] = u;
+                dist[u] = 0;
+            }
+        }
+        for (int i = 0; i < sizeQ; i++) {
+            int u1 = Q[i];
+            for (int e = last[u1]; e >= 0; e = p[e]) {
+                int u2 = matching[head[e]];
+                if (u2 >= 0 && dist[u2] < 0) {
+                    dist[u2] = dist[u1] + 1;
+                    Q[sizeQ++] = u2;
+                }
+            }
+        }
+    }
+    bool dfs(int u1) {
+        vis[u1] = true;
+        for (int e = last[u1]; e >= 0; e = p[e]) {
+            int v = head[e];
+            int u2 = matching[v];
+            if (u2 < 0 || !vis[u2] && dist[u2] == dist[u1] + 1 && dfs(u2)) {
+                matching[v] = u1;
+                used[u1] = true;
+                return true;
+            }
+        }
+        return false;
+    }
+    int maxMatching() {
+        fill(used, used + n1, false);
+        fill(matching, matching + n2, -1);
+        for (int res = 0;;) {
+            bfs();
+            fill(vis, vis + n1, false);
+            int f = 0;
+            for (int u = 0; u < n1; ++u)
+                if (!used[u] && dfs(u))
+                    ++f;
+            if (!f)
+                return res;
+            res += f;
+        }
+    }
+};
+ 
+int main() {
+#ifndef ONLINE_JUDGE 
+    readfiles;
+    double startTime = clock();
+#endif
+    int n,m,p;
+    cin >> n >> m>>p;
+    HopeCroft hc;
+    hc.init(n + 1, m + 1);
+    for (int i = 0; i < p; i++) {
+        int u, v;
+        cin >> u>>v;
+        hc.addEdge(u, v);
+    }
+    cout << hc.maxMatching() << endl;
+#ifndef ONLINE_JUDGE
+    cout << "Runtime is : " << (clock() - startTime) / CLOCKS_PER_SEC << endl;
+#endif
+} 

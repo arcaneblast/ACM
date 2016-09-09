@@ -1,0 +1,53 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <cstdio>
+#include <cstdlib>
+#include <map>
+#include <queue>
+#include <climits>
+#include <utility>
+#include <cmath>
+#include <set>
+#include <cctype>
+#include<stdio.h>  
+using namespace std;
+
+int gcd(int a, int b) {
+    int c;
+    while (a != 0) {
+        c = a;
+        a = b % a;
+        b = c;
+    }
+    return b;
+}
+
+int main() {
+    int a, b, n;
+    cin >> a >> b >> n;
+    bool simon = true;
+    while (1) {
+        if (simon) {
+            int g = gcd(a, n);
+            if (g <= n)
+                n -= g;
+            else
+                break;
+            simon = false;
+        } else {
+            int g = gcd(b, n);
+            if (g <= n)
+                n -= g;
+            else
+                break;
+            simon = true;
+        }
+    }
+    if (!simon)
+        cout << "0" << endl;
+    else
+        cout << "1" << endl;
+    return 0;
+}
+

@@ -1,0 +1,171 @@
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <string.h>
+#include <string>
+#include <map>
+#include <math.h>
+#include <sstream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <cmath>
+#include <algorithm>
+#include <list>
+#include <functional>
+#include <deque>
+#include <utility>
+#define mp  make_pair
+#define pb  push_back
+#define eps 1e-8
+#define Sqr(x) ((x)*(x))
+#define iseq(a,b) (fabs(a-b)<eps)
+#define readfiles freopen("in.txt","r",stdin); freopen("out.txt","w",stdout)
+#define readfile freopen("in.txt","r",stdin)
+#define fastio ios::sync_with_stdio(false)
+#define oo 0x7fffffff
+#define forv(i,v) for(int i=0;i<v.size();i++)
+#define all(v) v.begin(),v.end()
+#define OO 0x7fffffffffffffff
+#define readcases int cases;cin>>cases;while(cases--)
+ 
+//vertex spliting 
+#define in_node(x) x
+#define out_node(x) x+n
+ 
+ 
+//graph coloring
+#define UNCOLORED -1
+#define BLACK 0
+#define WHITE 1 
+ 
+//biparite 
+#define Left_P(x) x
+#define Right_P(x) n+x
+ 
+#define moder 1000000007
+using namespace std;
+typedef long long ll;
+typedef pair< int, pair<int, int> > wEdge;
+typedef pair<int, int> Edge;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+typedef pair<ll, pair<int, int> > edge;
+ 
+//Range sum query tree
+#define N 100005 
+ 
+ll tree[262155];
+ll lazy[262155];
+int n, q;
+ 
+int right(int a) {
+    return a << 1 | 1;
+}
+ 
+int left(int a) {
+    return a << 1;
+}
+ 
+void build(ll p, ll l, ll r) {
+    if (l > r)//unvalid node
+        return;
+    if (l == r) {//leaf node
+        tree[p] = 0;
+        lazy[p] = 0;
+    } else {//internal node
+        build(left(p), l, (l + r) / 2);
+        build(right(p), ((l + r) / 2) + 1, r);
+        tree[p] = tree[right(p)] + tree[left(p)];
+        lazy[p] = 0;
+    }
+}
+ 
+ll query(ll p, ll l, ll r, ll i, ll j) {
+    if (l > r || l > j || r < i)
+        return 0;
+    
+    if (lazy[p] != 0) {
+        tree[p] += (r - l + 1) * lazy[p];
+        if (l != r) {
+            lazy[right(p)] += lazy[p];
+            lazy[left(p)] += lazy[p];
+        }
+        lazy[p] = 0;
+    }
+ 
+    if (l >= i && r <= j)
+        return tree[p];
+ 
+    int m = (l + r) / 2;
+    ll ret = 0;
+    ret += query(left(p), l, m, i, j);
+    ret += query(right(p), m + 1, r, i, j);
+    return ret;
+}
+ 
+void updateRange(ll p, ll l, ll r, ll i, ll j, ll value) {
+    if (l > r || i > r || j < l)
+        return;
+    if (lazy[p] != 0) {
+        tree[p] += (r - l + 1) * lazy[p];
+        if (l != r) {
+            lazy[left(p)] += lazy[p];
+            lazy[right(p)] += lazy[p];
+        }
+        lazy[p] = 0;
+    }
+    if (l >= i && r <= j) {
+        tree[p] += (r - l + 1) * value;
+        if (l != r) {
+            lazy[left(p)] += value;
+            lazy[right(p)] += value;
+        }
+    } else {
+        updateRange(left(p), l, (l + r) / 2, i, j, value);
+        updateRange(right(p), ((l + r) / 2) + 1, r, i, j, value);
+        tree[p] += value * (min(r, j) - max(l, i) + 1);
+    }
+}
+ 
+void updatePoint(int p, int l, int r, int pos, ll value) {
+    if (l == r)
+        tree[p] = value;
+    else {
+        if (pos <= (l + r) / 2)
+            updatePoint(left(p), l, (l + r) >> 1, pos, value);
+        else
+            updatePoint(right(p), ((l + r) >> 1) + 1, r, pos, value);
+        tree[p] = tree[left(p)] + tree[right(p)];
+    }
+}
+ 
+int main() {
+#ifndef ONLINE_JUDGE 
+    readfiles;
+    double startTime = clock();
+#endif  
+    int cases;
+    scanf("%d", &cases);
+    while (cases--) {
+        scanf("%d %d", &n, &q);
+        build(1, 0, n - 1);
+        while (q--) {
+            ll t, a, b;
+            scanf("%lld %lld %lld", &t, &a, &b);
+            a--, b--;
+            if (t == 0) {
+                ll v;
+                scanf("%lld", &v);
+                updateRange(1, 0, n - 1, a, b, v);
+            } else {
+                ll res = query(1, 0, n - 1, a, b);
+                printf("%lld\n", res);
+            }
+ 
+        }
+    }
+#ifndef ONLINE_JUDGE
+    cout << "Runtime is : " << (clock() - startTime) / CLOCKS_PER_SEC << endl;
+#endif
+}

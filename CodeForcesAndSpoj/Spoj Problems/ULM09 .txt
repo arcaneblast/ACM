@@ -1,0 +1,120 @@
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <string.h>
+#include <string>
+#include <map>
+#include <math.h>
+#include <sstream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <cmath>
+#include <algorithm>
+#include <list>
+#include <deque>
+#include <utility>
+#define mp  make_pair
+#define pb  push_back
+#define eps 1e-9
+#define iseq(a,b) (fabs(a-b)<eps)
+#define readfiles freopen("in.txt","r",stdin); freopen("out.txt","w",stdout)
+#define readfile freopen("in.txt","r",stdin)
+#define fastio ios::sync_with_stdio(false)
+#define oo 0x7fffffff
+#define forv(i,v) for(int i=0;i<v.size();i++)
+#define all(v) v.begin(),v.end()
+#define OO 0x7fffffffffffffff
+#define readcases int cases;cin>>cases;while(cases--)
+ 
+//vertix spliting 
+#define in_node(x) x
+#define out_node(x) x+n
+ 
+//graph coloring
+#define UNCOLORED -1
+#define BLACK 0
+#define WHITE 1 
+ 
+#define moder 1000000007
+ 
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+typedef pair<ll, pair<int, int> > edge;
+ 
+struct UFS {
+public:
+    int rep[200005];
+    int rank[200005];
+ 
+    UFS(int n) {
+        for (int i = 0; i < n; i++)
+            rep[i] = i, rank[i] = 1;
+    }
+ 
+    int findSet(int a) {
+        return (rep[a] == a) ? a : (rep[a] = findSet(rep[a]));
+    }
+ 
+    bool issameSet(int a, int b) {
+        return findSet(a) == findSet(b);
+    }
+ 
+    void unionSet(int a, int b) {
+        if (!issameSet(a, b)) {
+            int x = findSet(a);
+            int y = findSet(b);
+            if (rank[x] > rank[y]) {
+                rep[y] = x;
+            } else {
+                rep[x] = y;
+                if (rank[x] == rank[y]) {
+                    rank[y]++;
+                }
+ 
+            }
+        }
+    }
+};
+ 
+vector< edge > edgelist;
+ 
+ll kruskal(int n) {
+    ll res = 0;
+    sort(edgelist.begin(), edgelist.end());
+    UFS ufs(n);
+    for (int i = 0; i < edgelist.size(); i++) {
+        edge e = edgelist[i];
+        if (!ufs.issameSet(e.second.first, e.second.second)) {
+            res += e.first;
+            ufs.unionSet(e.second.first, e.second.second);
+        }
+    }
+    return res;
+}
+ 
+int main() {
+#ifndef ONLINE_JUDGE 
+    readfiles;
+    double startTime = clock();
+#endif
+    int n, m;
+    while (cin >> n >> m && n && m) {
+        edgelist.clear();
+        ll sum = 0;
+        for (int i = 0; i < m; i++) {
+            edge e;
+            cin >> e.second.first >> e.second.second >> e.first;
+            sum += e.first;
+            edgelist.pb(e);
+        }
+        ll ne = kruskal(n);
+        cout << sum - ne << endl;
+    }
+#ifndef ONLINE_JUDGE
+    cout << "Runtime is : " << (clock() - startTime) / CLOCKS_PER_SEC << endl;
+#endif
+}

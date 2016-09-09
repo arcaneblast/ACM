@@ -1,0 +1,137 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <cstdio>
+#include <cstdlib>
+#include <map>
+#include <queue>
+#include <climits>
+#include <utility>
+#include <functional>
+#include <cmath>
+#include <set>
+#include <string.h>
+#define INF 10000000
+using namespace std;
+
+struct room
+{
+    set<int> have;
+    set<int> need;
+};
+bool visited[20];
+bool path[20][20];
+int n;
+
+bool CanMove(set<int> keys, room r2, int r1n, int r2n)
+{
+    if (path[r1n][r2n])
+    {
+        if (r2.need.size() != 0)
+        {
+            bool canvisit = true;
+            for (set<int>::iterator it = r2.need.begin(); it != r2.need.end(); it++)
+            {
+                if (keys.find((*it)) == keys.end())
+                {
+                    canvisit = false;
+                    break;
+                }
+            }
+            return canvisit;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+int DFS(int v, set<int> keys, int cnt, room graph[20])
+{
+    visited[v] = true;
+    for (set<int>::iterator it = graph[v].have.begin(); it != graph[v].have.end(); it++)
+    {
+        keys.insert((*it));
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i])
+        {
+            if (CanMove(keys, graph[i], v, i))
+            {
+                cnt = max(cnt, DFS(i, keys, cnt + 1, graph));
+                if (cnt == n)
+                {
+                    visited[v]=false;
+                    return n;
+                }
+            }
+        }
+    }
+    visited[v]=false;
+    return cnt;
+}
+
+int main()
+{
+
+    int cases;
+    cin >> cases;
+    while (cases--)
+    {
+        cin >> n;
+        room graph[20];
+        for (int i = 0; i < n; i++)
+        {
+            visited[i] = 0;
+            int num;
+            cin >> num;
+            for (int j = 0; j < num; j++)
+            {
+                int temp;
+                cin >> temp;
+                graph[i].need.insert(temp);
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            int num;
+            cin >> num;
+            for (int j = 0; j < num; j++)
+            {
+                int temp;
+                cin >> temp;
+                graph[i].have.insert(temp);
+            }
+        }
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                char c;
+                cin >> c;
+                if (c == 'Y')
+                    path[i][j] = true;
+                else
+                    path[i][j] = false;
+            }
+        }
+        int res = -1;
+        for (int i = 0; i < n; i++)
+        {
+            int temp = DFS(i, graph[i].have, 1, graph);
+            if (temp == n)
+            {
+                res = temp;
+                break;
+            }
+            if (res < temp)
+            {
+                res = temp;
+            }
+        }
+        cout << res << endl;
+    }
+}

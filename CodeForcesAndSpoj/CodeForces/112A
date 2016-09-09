@@ -1,0 +1,30 @@
+nclude <iostream>
+#include <algorithm>
+#include <vector>
+#include <cstdio>
+#include <cstdlib>
+#include <map>
+#include <queue>
+#include <climits>
+#include <utility>
+#include <cmath>
+#include <set>
+#include <cctype>
+#include<stdio.h>  
+using namespace std;
+
+int main() {
+    string s1, s2;
+    cin >> s1 >> s2;
+    for (int i = 0; i < s1.length(); i++) {
+        if (isupper(s1[i]))
+            s1[i] = (s1[i] - 'A') + 'a';
+        if (isupper(s2[i]))
+            s2[i] = (s2[i] - 'A') + 'a';
+    }
+    if(s1==s2)cout<<"0"<<endl;
+    else if(s1>s2)cout<<"1"<<endl;
+    else cout<<"-1"<<endl;
+    return 0;
+}
+

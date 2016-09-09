@@ -1,0 +1,138 @@
+#include <iostream>
+#include <vector>
+#include <cstdio>
+#include <string.h>
+#include <string>
+#include <map>
+#include <math.h>
+#include <sstream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <cmath>
+#include <algorithm>
+#include <list>
+#include <functional>
+#include <deque>
+#include <utility>
+#define mp  make_pair
+#define pb  push_back
+#define eps 1e-8
+#define Sqr(x) ((x)*(x))
+#define iseq(a,b) (fabs(a-b)<eps)
+#define readfiles freopen("in.txt","r",stdin); freopen("out.txt","w",stdout)
+#define readfile freopen("in.txt","r",stdin)
+#define fastio ios::sync_with_stdio(false)
+#define oo 0x7fffffff
+#define forv(i,v) for(int i=0;i<v.size();i++)
+#define all(v) v.begin(),v.end()
+#define OO 0x7fffffffffffffff
+#define readcases int cases;cin>>cases;while(cases--)
+ 
+//vertex spliting 
+#define in_node(x) x
+#define out_node(x) x+n
+ 
+ 
+//graph coloring
+#define UNCOLORED -1
+#define BLACK 0
+#define WHITE 1 
+ 
+//biparite 
+#define Left_P(x) x
+#define Right_P(x) n+x
+ 
+#define moder 1000000007
+using namespace std;
+typedef long long ll;
+typedef pair< int, pair<int, int> > wEdge;
+typedef pair<int, int> Edge;
+typedef unsigned long long ull;
+typedef unsigned int uint;
+typedef pair<ll, pair<int, int> > edge;
+ 
+//Range min query tree
+#define N 100005
+ll tree[4 * N];
+ll lazy[4 * N];
+ll A[N];
+int n, q;
+ 
+ll right(ll a) {
+    return a << 1 | 1;
+}
+ 
+ll left(ll a) {
+    return a << 1;
+}
+ 
+void build(ll p, int l, int r) {
+    if (l > r)//unvalid node
+        return;
+    if (l == r) {//leaf node
+        tree[p] = A[l];
+        //lazy[p] = 0;
+    } else {//internal node
+        build(left(p), l, (l + r)>>1);
+        build(right(p), ((l + r)>>1) + 1, r);
+        tree[p] = min(tree[right(p)], tree[left(p)]);
+        //lazy[p] = 0;
+    }
+}
+ 
+ll query(ll p, int l, int r, int i, int j) {
+    if (l > r || i > r || j < l)
+        return OO;
+    //if (lazy[p] != 0) {
+    //    tree[p] += lazy[p];
+    //    if (l != r) {
+    ///        lazy[right(p)] += lazy[p];
+    //        lazy[left(p)] += lazy[p];
+    //    }
+    //    lazy[p] = 0;
+    //}
+    if (l >= i && r <= j)
+        return tree[p];
+    return min(query(left(p), l, (l + r) / 2, i, j), query(right(p), (l + r) / 2 + 1, r, i, j));
+}
+ 
+void updateRange(int p, int l, int r, int s, int e, int value) {
+    //    if(l>r||i>r||j<l)
+    //        return;
+    //    if(l>=i&&r<=j)
+    //        return tree[p];
+}
+ 
+void updatePoint(int p, int l, int r, int idx, int value) {
+ 
+}
+ 
+int main() {
+#ifndef ONLINE_JUDGE 
+    readfiles;
+    double startTime = clock();
+#endif  
+    int cases;
+    scanf("%d", &cases);
+    int kk = 1;
+    while (cases--) {
+        printf("Scenario #%d:\n", kk++);
+        scanf("%d %d", &n, &q);
+        for (int i = 0; i < n; i++)
+            cin>>A[i];
+        build(1, 0, n - 1);
+        while (q--) {
+            int a, b;
+            scanf("%d %d", &a, &b);
+            a--;
+            b--;
+            ll res=query(1, 0, n - 1, a, b);
+            printf("%ld\n",res);
+        }
+    }
+ 
+#ifndef ONLINE_JUDGE
+    //cout << "Runtime is : " << (clock() - startTime) / CLOCKS_PER_SEC << endl;
+#endif
+} 

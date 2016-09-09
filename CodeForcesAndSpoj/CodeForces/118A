@@ -1,0 +1,39 @@
+nclude <iostream>
+#include <algorithm>
+#include <vector>
+#include <cstdio>
+#include <cstdlib>
+#include <map>
+#include <queue>
+#include <climits>
+#include <utility>
+#include <cmath>
+#include <set>
+#include <cctype>
+#include<stdio.h>  
+using namespace std;
+int main() {
+
+    string s;
+    cin>>s;
+    set<char> vo;
+    vo.insert('A');vo.insert('a');
+    vo.insert('O');vo.insert('o');
+    vo.insert('Y');vo.insert('y');
+    vo.insert('E');vo.insert('e');
+    vo.insert('U');vo.insert('u');
+    vo.insert('I');vo.insert('i');
+    for(int i=0;i<s.length();i++)
+    {
+        if(vo.find(s[i])==vo.end())
+        {
+            if(isupper(s[i]))
+                cout<<"."<<(char)((s[i]-'A')+'a');
+            else
+                cout<<"."<<s[i];
+        }
+    }
+    cout<<endl;
+    return 0;
+}
+
